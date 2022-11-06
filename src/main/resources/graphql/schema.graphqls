@@ -1,0 +1,44 @@
+# 对象类型
+type Book {
+    isbn: ID!
+    title: String!
+    pages: Int
+    author: Author!
+}
+
+type Author {
+    idCardNo: ID!
+    name: String!
+    age: Int
+}
+
+#根操作查询数据
+type Query {
+    allBooks: [Book]!
+    bookByIsbn(isbn: ID): Book
+
+}
+
+# 根操作创建数据
+type Mutation {
+    createBook(bookInput: BookInput): Book
+    createAuthor(authorInput: AuthorInput): Author
+}
+
+input BookInput { # 定义方法的入参
+    isbn: ID!
+    title: String!
+    pages: Int
+    authorIdCardNo: String
+}
+
+input AuthorInput { # 定义方法的入参
+    idCardNo: ID!
+    name: String!
+    age: Int
+}
+
+# 根操作订阅数据
+type Subscription {
+    greetings: String
+}
